@@ -6,6 +6,7 @@ import chalk from 'chalk'
 import determineConfig from './determineConfig'
 import logger from '../logger'
 import bundlewatchApi, { STATUSES } from '../app'
+import { reportResults } from '../app/reporting/Reporter'
 
 const prettyPrintResults = fullResults => {
     logger.log('')
@@ -38,6 +39,11 @@ const prettyPrintResults = fullResults => {
 
 const main = async () => {
     const config = determineConfig(program)
+    const reportTo = []
+    if (config.reporter)
+        Object.keys(config.reporter).forEach(key => {
+            reportTo.push(config.reporter[key])
+        })
 
     if (config.files && config.files.length > 0) {
         const results = await bundlewatchApi(config)
@@ -58,13 +64,16 @@ const main = async () => {
             return 1
         }
 
+        if (reportTo) {
+            reportResults(results.fullResults, reportTo)
+        }
+
         if (results.status === STATUSES.WARN) {
             logger.log(chalk.redBright(`bundlewatch WARN`))
             logger.log(results.summary)
             logger.log('')
             return 0
         }
-
         logger.log(chalk.greenBright(`bundlewatch PASS`))
         logger.log(results.summary)
         logger.log('')

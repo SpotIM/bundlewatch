@@ -1,6 +1,6 @@
 {
-    "name": "bundlewatch",
-    "version": "0.0.0",
+    "name": "@spotim/bundlewatch",
+    "version": "0.1.4",
     "description": "Keep watch of your bundle size",
     "repository": {
         "type": "git",
@@ -13,11 +13,6 @@
     "files": [
         "lib"
     ],
-    "husky": {
-        "hooks": {
-            "pre-commit": "./scripts/check-versions.sh && lint-staged"
-        }
-    },
     "lint-staged": {
         "*.js": [
             "node_modules/.bin/eslint"
