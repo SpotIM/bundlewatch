@@ -1,7 +1,5 @@
-const url =
-    'https://hooks.slack.com/services/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'
 const { IncomingWebhook } = require('@slack/webhook')
-const webhook = new IncomingWebhook(url)
+const webhook = new IncomingWebhook(process.env.BUNDLEWATCH_WEBHOOK_URL)
 const CI_BRANCH = process.env.CIRCLE_BRANCH
 const CI_PROJECT = process.env.CIRCLE_PROJECT_REPONAME
 const CI_PULLREQUEST = process.env.CI_PULL_REQUESTS
