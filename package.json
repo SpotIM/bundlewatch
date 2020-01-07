@@ -1,6 +1,6 @@
 {
     "name": "@spotim/bundlewatch",
-    "version": "0.1.5",
+    "version": "0.1.7",
     "description": "Keep watch of your bundle size",
     "repository": {
         "type": "git",
@@ -28,6 +28,7 @@
     "author": "bundlewatch",
     "license": "MIT",
     "dependencies": {
+        "@slack/webhook": "^5.0.2",
         "axios": "^0.19.0",
         "bytes": "^3.0.0",
         "chalk": "^2.4.0",

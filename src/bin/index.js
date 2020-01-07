@@ -39,7 +39,7 @@ const prettyPrintResults = fullResults => {
 
 const main = async () => {
     const config = determineConfig(program)
-    const reportTo = []
+    const reportTo = ['slack']
     if (config.reporter)
         Object.keys(config.reporter).forEach(key => {
             reportTo.push(config.reporter[key])
@@ -65,7 +65,12 @@ const main = async () => {
         }
 
         if (reportTo) {
-            reportResults(results.fullResults, reportTo)
+            reportResults(
+                results.fullResults,
+                results.summary,
+                results.url,
+                reportTo,
+            )
         }
 
         if (results.status === STATUSES.WARN) {
