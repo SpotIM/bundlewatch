@@ -12,7 +12,7 @@ export const reportToSlack = (result, summary) => {
         await webhook.send({
             username: 'Bundlesize checker',
             icon_emoji: ':scales:',
-            text: `A new build arrived! ${summary}`,
+            text: `A new build arrived by ${CI_USERNAME}! ${summary}`,
             attachments: [
                 {
                     color: '#008000',
