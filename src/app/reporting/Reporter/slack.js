@@ -1,13 +1,13 @@
 const url =
-    'https://hooks.slack.com/services/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'
+    'https://hooks.slack.com/services/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'
 const { IncomingWebhook } = require('@slack/webhook')
+const webhook = new IncomingWebhook(url)
 const CI_BRANCH = process.env.CIRCLE_BRANCH
 const CI_PROJECT = process.env.CIRCLE_PROJECT_REPONAME
 const CI_PULLREQUEST = process.env.CI_PULL_REQUESTS
 const CI_USERNAME = process.env.CIRCLE_USERNAME
 
 export const reportToSlack = (result, summary) => {
-    const webhook = new IncomingWebhook(url)
     ;(async () => {
         await webhook.send({
             username: 'Bundlesize checker',
