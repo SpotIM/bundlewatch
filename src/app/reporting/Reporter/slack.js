@@ -8,7 +8,7 @@ const CI_PROJECT = process.env.CIRCLE_PROJECT_REPONAME
 const CI_PULLREQUEST = process.env.CI_PULL_REQUESTS
 const CI_USERNAME = process.env.CIRCLE_USERNAME
 
-export const reportToSlack = (result, summary) => {
+export const reportToSlack = (result, summary, resultsUrl) => {
     ;(async () => {
         await webhook.send({
             username: 'Bundlesize checker',
@@ -53,7 +53,7 @@ export const reportToSlack = (result, summary) => {
                         {
                             type: 'button',
                             text: 'Show detailed results',
-                            url: url,
+                            url: resultsUrl,
                         },
                     ],
                 },
