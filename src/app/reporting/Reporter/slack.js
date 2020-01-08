@@ -43,6 +43,11 @@ export const reportToSlack = (result, summary, resultsUrl) => {
                             value: `${result.size / 1024} KB`,
                             short: true,
                         },
+                        {
+                            title: 'Size limit',
+                            value: `${result.maxSize / 1024} KB`,
+                            short: true,
+                        },
                     ],
                     actions: [
                         {
