@@ -3,9 +3,9 @@ import axios from 'axios'
 import logger from '../../../logger'
 
 const getContextForFilePath = filePath => {
-    let context = 'bundlewatch'
+    let context = ''
     if (filePath) {
-        const TRUNCATE_TO_LENGTH = 35
+        const TRUNCATE_TO_LENGTH = 60
         if (filePath.length > TRUNCATE_TO_LENGTH) {
             context +=
                 ' *' +
@@ -14,7 +14,7 @@ const getContextForFilePath = filePath => {
                     filePath.length,
                 )
         } else {
-            context += ' ' + filePath
+            context += filePath
         }
     }
     return context
