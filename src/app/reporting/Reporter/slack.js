@@ -16,7 +16,7 @@ export const reportToSlack = (result, summary, resultsUrl) => {
             text: `A new build arrived by ${CI_USERNAME}! *${summary}*`,
             attachments: [
                 {
-                    color: result.status === 'pass' ? '#ff0000' : '#008000',
+                    color: result.status === 'pass' ? '#008000' : '#ff0000',
                     fields: [
                         {
                             title: 'Project',
