@@ -1,8 +1,10 @@
 import { reportToGrafana } from './grafana'
 import { reportToSlack } from './slack'
+import { getOverallDifference } from '../../analyze/index'
 
 export function reportResults(results, summary, url, reportTo) {
     if (results) {
+        const { percentageChange } = getOverallDifference(results)
         results.forEach(result => {
             reportTo.forEach(reporter => {
                 if (
@@ -14,7 +16,12 @@ export function reportResults(results, summary, url, reportTo) {
                             reportToGrafana(result)
                             break
                         case 'slack':
-                            reportToSlack(result, summary, url)
+                            if (
+                                percentageChange >= 5 ||
+                                (result.status === 'fail' && result.size)
+                            ) {
+                                reportToSlack(result, summary, url)
+                            }
                             break
                         default:
                     }

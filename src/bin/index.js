@@ -40,10 +40,9 @@ const prettyPrintResults = fullResults => {
 const main = async () => {
     const config = determineConfig(program)
     const reportTo = ['slack']
-    if (config.reporter)
-        Object.keys(config.reporter).forEach(key => {
-            reportTo.push(config.reporter[key])
-        })
+    if (config.reporter) {
+        config.reporter.forEach(report => reportTo.push(report))
+    }
 
     if (config.files && config.files.length > 0) {
         const results = await bundlewatchApi(config)
