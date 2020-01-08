@@ -10,7 +10,11 @@ export function reportResults(results, summary, url, reportTo) {
                         reportToGrafana(result)
                         break
                     case 'slack':
-                        reportToSlack(result, summary, url)
+                        if (
+                            result.status === 'pass' ||
+                            (result.status === 'fail' && result.size)
+                        )
+                            reportToSlack(result, summary, url)
                         break
                     default:
                 }

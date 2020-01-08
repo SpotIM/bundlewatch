@@ -55,7 +55,7 @@ export const getPercentageChangeString = percentageChange => {
 
 const getSummary = ({ overallStatus, fullResults, baseBranchName }) => {
     if (overallStatus === STATUSES.FAIL) {
-        return `maxSize check failed`
+        return `maxSize check failed, check detailed results`
     }
 
     let differenceSummary = ''
