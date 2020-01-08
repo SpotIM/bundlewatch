@@ -34,8 +34,7 @@
     "reporter": ["grafana"]
     }
     
-
-3. add a script in package.json that will run bundlewatch from your bundlewatch.json:
+3. add a script in package.json that will run bundlewatch from your bundlewatch.json, and check it locally with `npm run bundlewatch`:
 
 ```
      ...
