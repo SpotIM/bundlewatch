@@ -8,12 +8,24 @@ const CI_PROJECT = process.env.CIRCLE_PROJECT_REPONAME
 const CI_PULLREQUEST = process.env.CI_PULL_REQUESTS
 const CI_USERNAME = process.env.CIRCLE_USERNAME
 
-export const reportToSlack = (result, summary, resultsUrl) => {
+export const reportToSlack = (
+    result,
+    summary,
+    resultsUrl,
+    percentageChange,
+) => {
     ;(async () => {
+        let newSummary = ''
+        if (percentageChange >= 5) {
+            newSummary =
+                summary + ` - ${percentageChange}% change in bundle size limit!`
+        } else {
+            newSummary = summary
+        }
         await webhook.send({
             username: 'Bundlesize checker',
             icon_emoji: ':scales:',
-            text: `A new build arrived by ${CI_USERNAME}! *${summary}* <!channel>`,
+            text: `A new build arrived by ${CI_USERNAME}! *${newSummary}* <!channel>`,
             attachments: [
                 {
                     color: result.status === 'pass' ? '#008000' : '#ff0000',

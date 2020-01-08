@@ -5,6 +5,7 @@ import { getOverallDifference } from '../../analyze/index'
 export function reportResults(results, summary, url, reportTo) {
     if (results) {
         const { percentageChange } = getOverallDifference(results)
+
         results.forEach(result => {
             reportTo.forEach(reporter => {
                 if (
@@ -20,7 +21,12 @@ export function reportResults(results, summary, url, reportTo) {
                                 percentageChange >= 5 ||
                                 (result.status === 'fail' && result.size)
                             ) {
-                                reportToSlack(result, summary, url)
+                                reportToSlack(
+                                    result,
+                                    summary,
+                                    url,
+                                    percentageChange.toFixed(1),
+                                )
                             }
                             break
                         default:
