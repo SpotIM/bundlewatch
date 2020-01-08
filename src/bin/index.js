@@ -57,13 +57,6 @@ const main = async () => {
 
         prettyPrintResults(results.fullResults)
 
-        if (results.status === STATUSES.FAIL) {
-            logger.log(chalk.redBright(`bundlewatch FAIL`))
-            logger.log(results.summary)
-            logger.log('')
-            return 1
-        }
-
         if (reportTo) {
             reportResults(
                 results.fullResults,
@@ -71,6 +64,13 @@ const main = async () => {
                 results.url,
                 reportTo,
             )
+        }
+
+        if (results.status === STATUSES.FAIL) {
+            logger.log(chalk.redBright(`bundlewatch FAIL`))
+            logger.log(results.summary)
+            logger.log('')
+            return 1
         }
 
         if (results.status === STATUSES.WARN) {
