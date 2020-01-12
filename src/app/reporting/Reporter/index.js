@@ -1,10 +1,10 @@
 import { reportToGrafana } from './grafana'
 import { reportToSlack } from './slack'
 import { getOverallDifference } from '../../analyze/index'
+const CI_BRANCH = process.env.CIRCLE_BRANCH
 
 export function reportResults(results, summary, url, reportTo) {
     if (results) {
-
         results.forEach(result => {
             const { percentageChange } = getOverallDifference([result])
             const fixedPercentage = percentageChange
@@ -21,8 +21,11 @@ export function reportResults(results, summary, url, reportTo) {
                             break
                         case 'slack':
                             if (
-                                percentageChange >= 5 ||
-                                (result.status === 'fail' && result.size)
+                                !(
+                                    CI_BRANCH && CI_BRANCH.includes('redesign')
+                                ) &&
+                                (percentageChange >= 5 ||
+                                    (result.status === 'fail' && result.size))
                             ) {
                                 reportToSlack(
                                     result,
