@@ -4,9 +4,12 @@ import { getOverallDifference } from '../../analyze/index'
 
 export function reportResults(results, summary, url, reportTo) {
     if (results) {
-        const { percentageChange } = getOverallDifference(results)
 
         results.forEach(result => {
+            const { percentageChange } = getOverallDifference([result])
+            const fixedPercentage = percentageChange
+                ? percentageChange.toFixed(1)
+                : ''
             reportTo.forEach(reporter => {
                 if (
                     result.status === 'pass' ||
@@ -25,7 +28,7 @@ export function reportResults(results, summary, url, reportTo) {
                                     result,
                                     summary,
                                     url,
-                                    percentageChange.toFixed(1),
+                                    fixedPercentage,
                                 )
                             }
                             break

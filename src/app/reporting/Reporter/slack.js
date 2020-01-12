@@ -17,8 +17,7 @@ export const reportToSlack = (
     ;(async () => {
         let newSummary = ''
         if (percentageChange >= 5) {
-            newSummary =
-                summary + ` - ${percentageChange}% change in bundle size limit!`
+            newSummary = ` - ${percentageChange}% change in bundle size limit!`
         } else {
             newSummary = summary
         }
