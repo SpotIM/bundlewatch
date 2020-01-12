@@ -34,7 +34,7 @@
     "reporter": ["grafana"]
     }
     
-3. add a script in package.json that will run bundlewatch from your bundlewatch.json, and check it locally with `npm run bundlewatch`:
+3. add a script in `package.json` that will run bundlewatch from your `bundlewatch.json`:
 
 ```
      ...
@@ -42,7 +42,7 @@
      ...
 ```
 
-4. update your circleCI build config (config.yml). The script must run after the building of the production assets, example: 
+4. update your circleCI build config (`config.yml`). The script must run after the building of the production assets, example: 
 
 ```
       - run:
