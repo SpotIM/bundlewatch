@@ -56,7 +56,7 @@
 5. PROFIT
 
 <h4>Notes:</h4>
-    - Bundlwatch will report to grafana dashboard: Bundle-size-monitoring.<br>
+    - Bundlewatch will report to grafana dashboard: Bundle-size-monitoring.<br>
     - Bundlewatch will report to the slack channel: #bundle-size-monitoring every build that: <br>
         &nbsp&nbsp&nbsp&nbsp 1. Exceeded the maxSize argument <br>
         &nbsp&nbsp&nbsp&nbsp 2. Grew more than 5% kB's from the master build size <br>
