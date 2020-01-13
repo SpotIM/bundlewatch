@@ -21,9 +21,7 @@ export function reportResults(results, summary, url, reportTo) {
                             break
                         case 'slack':
                             if (
-                                !(
-                                    CI_BRANCH && CI_BRANCH.includes('redesign')
-                                ) &&
+                                CI_BRANCH === 'master' &&
                                 (percentageChange >= 5 ||
                                     (result.status === 'fail' && result.size))
                             ) {
