@@ -34,7 +34,7 @@
     "reporter": ["grafana"]
     }
     
-3. add a script in package.json that will run bundlewatch from your bundlewatch.json, and check it locally with `npm run bundlewatch`:
+3. add a script in `package.json` that will run bundlewatch from your `bundlewatch.json`:
 
 ```
      ...
@@ -42,7 +42,7 @@
      ...
 ```
 
-4. update your circleCI build config (config.yml). The script must run after the building of the production assets, example: 
+4. update your circleCI build config (`config.yml`). The script must run after the building of the production assets, example: 
 
 ```
       - run:
@@ -54,5 +54,12 @@
 ```
 
 5. PROFIT
+
+<h4>Notes:</h4>
+    - Bundlewatch will report to grafana dashboard: Bundle-size-monitoring.<br>
+    - Bundlewatch will report to the slack channel: #bundle-size-monitoring every build that: <br>
+        &nbsp&nbsp&nbsp&nbsp 1. Exceeded the maxSize argument <br>
+        &nbsp&nbsp&nbsp&nbsp 2. Grew more than 5% kB's from the master build size <br>
+        <br>
 
 Projects that use bundlewatch for references: Launcher, Conversation
