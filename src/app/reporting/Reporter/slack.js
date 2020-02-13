@@ -17,14 +17,17 @@ export const reportToSlack = (
     ;(async () => {
         let newSummary = ''
         if (percentageChange >= 5) {
-            newSummary = ` - ${percentageChange}% change in bundle size limit!`
+            newSummary = `* - ${percentageChange}% increase in bundle size! * <!channel>`
+        } else if (percentageChange <= -5) {
+            newSummary = `* - ${percentageChange *
+                -1}% decrease in bundle size! Good job *`
         } else {
             newSummary = summary
         }
         await webhook.send({
             username: 'Bundlesize checker',
             icon_emoji: ':scales:',
-            text: `A new build arrived by ${CI_USERNAME}! *${newSummary}* <!channel>`,
+            text: `A new build arrived by ${CI_USERNAME}! ${newSummary}`,
             attachments: [
                 {
                     color: result.status === 'pass' ? '#008000' : '#ff0000',
