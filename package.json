@@ -1,6 +1,6 @@
 {
     "name": "@spotim/bundlewatch",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Keep watch of your bundle size",
     "repository": {
         "type": "git",
