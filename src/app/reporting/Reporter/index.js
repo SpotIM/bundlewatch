@@ -23,6 +23,7 @@ export function reportResults(results, summary, url, reportTo) {
                             if (
                                 CI_BRANCH === 'master' &&
                                 (percentageChange >= 5 ||
+                                    percentageChange <= -5 ||
                                     (result.status === 'fail' && result.size))
                             ) {
                                 reportToSlack(
